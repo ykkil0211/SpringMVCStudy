@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mybatis.IStudentDAO">
+
+	<select id="list" resultType="com.test.mybatis.StudentDTO">
+	
+		SELECT SID, NAME, TEL, SUB
+		FROM STUDENTVIEW
+		ORDER BY SID
+	</select>
+
+	<select id="count" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT 
+		FROM STUDENTVIEW
+	</select>
+	
+	<insert id="add">
+		
+		INSERT INTO TBL_STUDENT(SID, NAME, TEL)
+		VALUES((SELECT MAX(SID)
+		FROM TBL_STUDENT)+1, #{name}, #{tel})
+	
+	</insert>
+	
+	<select id="list2" resultType="com.test.mybatis.StudentDTO">
+		SELECT SID, NAME, TEL, SUB
+		FROM STUDENTVIEW
+		WHERE SID= #{sid}
+	</select>
+	
+	
+	<update id="modify">
+		UPDATE TBL_STUDENT
+		SET NAME= #{name}, TEL= #{tel}
+		WHERE SID = #{sid}
+	
+	</update>
+	
+	<delete id="remove">
+		DELETE 
+		FROM TBL_STUDENT
+		WHERE SID = #{sid}
+	</delete>
+	
+
+</mapper>
