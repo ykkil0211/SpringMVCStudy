@@ -9,7 +9,7 @@
 	String cp = request.getContextPath();
 %>
 <%
-	/* Test_ok.jsp */
+	/* Test_ok.jsp  */
 	
 	String root = "/";
 	root = pageContext.getServletContext().getRealPath(root);
