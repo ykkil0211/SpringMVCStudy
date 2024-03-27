@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.mybatis.IMemberDAO">
+
+	<select id="list" resultType="com.test.mybatis.MemberDTO">
+		SELECT ID,NAME,TEL,EMAIL
+		FROM TBL_MEMBERLIST		
+	</select>
+	
+	<select id="count" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT
+		FROM TBL_MEMBERLIST		
+	</select>
+	
+	<insert id="add">
+	
+	INSERT INTO TBL_MEMBERLIST(ID, PW, NAME, TEL, EMAIL)
+	VALUES(#{id}, #{pw}, #{name}, #{tel}, #{email})
+	</insert>
+	
+	<delete id="remove">
+		DELETE
+		FROM TBL_MEMBERLIST
+		WHERE ID=#{id}	
+	</delete>
+	
+	<select id="search" resultType="com.test.mybatis.MemberDTO">
+		SELECT ID,PW,NAME,TEL,EMAIL
+		FROM TBL_MEMBERLIST
+		WHERE ID=#{id}
+	</select>
+	
+	<update id="modify">
+	UPDATE TBL_MEMBERLIST
+	SET PW=#{pw}, NAME=#{name}, TEL=#{tel}, EMAIL= #{email}
+	WHERE ID=#{id}
+	</update>
+
+</mapper>
